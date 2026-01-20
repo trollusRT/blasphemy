@@ -4,69 +4,308 @@
     <meta charset="utf-8">
     <title>aa-stories</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
         body {
             margin: 0;
             background: #0b0b0b;
             color: #d6d6d6;
-            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            line-height: 1.55;
             display: grid;
             place-items: center;
             min-height: 100vh;
         }
 
         main {
-            text-align: center;
+            width: min(92ch, 92vw);
+            padding: 2.25rem 1.25rem 3rem;
         }
 
-        img {
-            max-width: 280px;
-            width: 60vw;
-            height: auto;
-            margin-bottom: 1.25rem;
-            user-select: none;
-            pointer-events: none;
+        header {
+            margin-bottom: 1.75rem;
         }
 
-        p {
+        .kicker {
+            color: #7a7a7a;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-size: .75rem;
+            margin-bottom: .5rem;
+        }
+
+        h1 {
+            font-size: 1.25rem;
             margin: 0;
-            font-size: .9rem;
-            color: #888;
+            font-weight: 600;
+            letter-spacing: .02em;
         }
+
+        .links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem .9rem;
+            align-items: center;
+        }
+
+            .links a {
+                color: #d6d6d6;
+                text-decoration: none;
+                border-bottom: 1px solid #333;
+                padding-bottom: 2px;
+            }
+
+                .links a:hover {
+                    border-bottom-color: #888;
+                }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #222, transparent);
+            margin: 2rem 0;
+        }
+
+        .projects {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 256px 1fr;
+            gap: 1rem;
+            align-items: start;
+            border-left: 2px solid #222;
+            padding-left: 1rem;
+        }
+
+        .thumb {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            display: block;
+            background: #070707;
+            border: 1px solid #1b1b1b;
+            border-radius: 10px;
+        }
+
+        .title {
+            margin: 0 0 .35rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e2e2e2;
+        }
+
+        .desc {
+            margin: 0;
+            color: #bdbdbd;
+            max-width: 70ch;
+        }
+
+        .about {
+            max-width: 72ch;
+            margin: 1.25rem 0 2rem;
+            color: #bdbdbd;
+            font-size: .9rem;
+        }
+
+        .meta {
+            margin-top: .75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem 1rem;
+            font-size: .85rem;
+            color: #8c8c8c;
+        }
+
+            .meta a {
+                color: #bdbdbd;
+                text-decoration: none;
+                border-bottom: 1px solid #2a2a2a;
+                padding-bottom: 2px;
+            }
+
+                .meta a:hover {
+                    border-bottom-color: #777;
+                }
+
+        footer {
+            margin-top: 2.25rem;
+            font-size: .75rem;
+            color: #666;
+        }
+
+        @media (max-width: 780px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .thumb {
+                max-width: 340px;
+            }
+        }
+
+        .thumb-btn {
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+            .thumb-btn:focus-visible {
+                outline: 2px solid #555;
+                outline-offset: 4px;
+            }
+
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+        }
+
+        .lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            cursor: zoom-out;
+        }
+
+        #lightbox-img {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 0 1px #222;
+            transition: transform .15s ease;
+        }
+
+        #lightbox[hidden] {
+            display: none !important;
+        }
+
     </style>
 </head>
+
 <body>
     <main>
-        <img src="/JuniorLanding.png" alt="" aria-hidden="true">
-        <p id="note"></p>
+        <header>
+            <div class="kicker">CURRENT WORK</div>
+            <h1>AA Webcomic Side Story / Creative Work Index</h1>
+
+            <div class="links">
+                <a href="https://www.webtoons.com/en/canvas/arcane-adventures/list?title_no=306909" target="_blank" rel="noopener">Webcomic</a>
+                <a href="https://trollusrt.itch.io/creative-freedom-color-quest" target="_blank" rel="noopener">Itch.io</a>
+                <a href="https://www.patreon.com/trollusart" target="_blank" rel="noopener">Patreon</a>
+            </div>
+        </header>
+
+        <section class="about">
+            <p>
+                I'm an amateur artist and game designer, and a hobbyist storyteller.
+                My current major work is the Arcane Adventures Webcomic, coming up on 7 years.
+                On the side, I'm also working on a couple of connected projects
+                into my own little storyverse, because it's fun, and a little scary(?)!
+            </p>
+        </section>
+
+
+        <div class="divider" role="separator" aria-hidden="true"></div>
+
+        <section class="projects">
+
+            <article class="card">
+                <button class="thumb-btn" data-full="thumbnail_aa.png" aria-label="View Arcane Adventures thumbnail">
+                    <img class="thumb" src="thumbnail_aa.png" alt="Arcane Adventures Webcomic thumbnail">
+                </button>
+                <div>
+                    <h2 class="title">Arcane Adventures Webcomic</h2>
+                    <p class="desc">
+                        An alternate telling of a story from a cancelled game, featuring the amnesiac prodigy Juniper in her quest
+                        against those who seek to disrupt peace within The Seven Seas while finding her purpose in her new life.
+                    </p>
+                    <div class="meta">
+                        <a href="https://www.webtoons.com/en/canvas/arcane-adventures/list?title_no=306909" target="_blank" rel="noopener">Read</a>
+                        <a href="/blasphemous/c1/" rel="noopener">AA Blasphemous</a>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="thumb-btn" data-full="thumbnail_cf.png" aria-label="View Creative Freedom thumbnail">
+                    <img class="thumb" src="thumbnail_cf.png" alt="Creative Freedom thumbnail">
+                </button>
+                <div>
+                    <h2 class="title">Creative Freedom</h2>
+                    <p class="desc">
+                        The rise of a foolish, hungry little painter and a faithful little critter in a colorless world feasted upon
+                        by illogical and outside entities that seek to attain realism.
+                    </p>
+                    <div class="meta">
+                        <a href="https://trollusrt.itch.io/creative-freedom-color-quest" target="_blank" rel="noopener">Play</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <button class="thumb-btn" data-full="thumbnail_wtf.png" aria-label="View World to Fantasy thumbnail">
+                    <img class="thumb" src="thumbnail_wtf.png" alt="World to Fantasy thumbnail">
+                </button>
+
+                <div>
+                    <h2 class="title">World to Fantasy</h2>
+                    <p class="desc">
+                        A country girl arrives to the big city to find out the world is a lot bigger, or smaller than she thinks
+                        when she learns of a quest to teach an odd little puppet what it means to be real.
+                    </p>
+                    <div class="meta">
+                        <a href="https://www.patreon.com/trollusart" target="_blank" rel="noopener">Follow</a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <div id="lightbox" hidden>
+            <div class="lightbox-backdrop"></div>
+            <img id="lightbox-img" alt="">
+        </div>
+
+        <script>
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+
+            document.querySelectorAll(".thumb-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    lightboxImg.src = btn.dataset.full;
+                    lightbox.hidden = false;
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.hidden = true;
+                lightboxImg.src = "";
+                document.body.style.overflow = "";
+            }
+
+            lightbox.addEventListener("click", closeLightbox);
+
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape" && !lightbox.hidden) {
+                    closeLightbox();
+                }
+            });
+        </script>
+
+        <footer>
+            updated 2026-01-19 ... more when there is more ...
+        </footer>
     </main>
-
-    <script>
-    /*
-      LANDING PAGE NOTES
-      These rotate on each visit.
-      No record is kept.
-    */
-
-    const notes = [
-      "She’s still painting. Don’t bother her.",
-      "Go away.",
-      "She stops painting while eyes from outside are watching. Come again later.",
-      "It isn't ready yet.",
-      "There’s nothing for you here.",
-      "What?",
-      "Not now."
-    ];
-
-    const note = document.getElementById("note");
-    const choice = Math.floor(Math.random() * notes.length);
-    note.textContent = notes[choice];
-    </script>
 </body>
 </html>
-
-
-
